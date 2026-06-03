@@ -50,6 +50,20 @@ std::string Trie::toSearchKey(std::string text){
 }
 
 
+int Trie::getCaracterIndex(char c){
+    int id;
+
+    if (c >= '0' && c <= '9'){
+        id = (c - '0') + 26;
+
+    } else { // Já que os títulos terão apenas letras e números
+        id = (c - 'a');
+    }
+
+    return id;
+}
+
+
 bool Trie::insert(Game* game){
     
     if(game == nullptr){
@@ -64,14 +78,16 @@ bool Trie::insert(Game* game){
 
         // Para cada caracter do titulo
         for (int i = 0; i < search_key.length(); i ++){
-            char c = search_key[i];
 
-            // Vemos se a sua posição com base na tabela ASCI está vazia
-            if(current_node -> children[c - 'a'] == nullptr){
-                current_node -> children[c - 'a'] = new TrieNode();
+            char c = search_key[i];
+            int id = getCaracterIndex(c); // Pegando o index da tabela ASCII
+
+            // Vemos se a sua posição com base na tabela ASCII está vazia
+            if(current_node -> children[id] == nullptr){
+                current_node -> children[id] = new TrieNode();
             }
 
-            current_node = current_node -> children[c - 'a'];
+            current_node = current_node -> children[id];
         }
 
         // Após incluir todo o título
@@ -93,14 +109,16 @@ bool Trie::contains(std::string title){
     TrieNode* current = root;
 
     for (int i = 0; i < search_key.length(); i++){
+        
         char c = search_key[i];
+        int id = getCaracterIndex(c);
 
         // Se alguma letra da key não existir em nosso Trie
-        if(current -> children[c - 'a'] == nullptr){
+        if(current -> children[id] == nullptr){
             return false;
         }
 
-        current = current -> children[c - 'a'];
+        current = current -> children[id];
     }
 
     // Se o titulo inteiro existir em nossa Trie, checamos se é o fim de um título

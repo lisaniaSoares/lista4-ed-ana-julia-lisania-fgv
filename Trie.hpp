@@ -9,7 +9,7 @@ class TrieNode {
 
 public:
 
-    static const int ALPHABET_SIZE = 26;
+    static const int ALPHABET_SIZE = 36;
 
     TrieNode* children[ALPHABET_SIZE];
     bool isEndOfTitle;
@@ -41,6 +41,7 @@ public:
     void sortResults(std::vector<Game*>& games);
 
     // Outros métodos auxiliares, se necessário
+    int getCaracterIndex(char c);
 };
 
 #endif

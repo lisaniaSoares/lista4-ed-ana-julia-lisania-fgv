@@ -92,11 +92,18 @@ bool Trie::contains(std::string title){
     std::string search_key = toSearchKey(title);
     TrieNode* current = root;
 
-    // for (int i = 0; i < search_key.length(); i++){
-    //     char c = search_key[i];
+    for (int i = 0; i < search_key.length(); i++){
+        char c = search_key[i];
 
-    //     if(search_key[i] != current -> children[c - 'a']){
+        // Se alguma letra da key não existir em nosso Trie
+        if(current -> children[c - 'a'] == nullptr){
+            return false;
+        }
 
-    //     }
-    // }
+        current = current -> children[c - 'a'];
+    }
+
+    // Se o titulo inteiro existir em nossa Trie, checamos se é o fim de um título
+    // e se existe um jogo associado
+    return (current->isEndOfTitle && current->game != nullptr);
 }

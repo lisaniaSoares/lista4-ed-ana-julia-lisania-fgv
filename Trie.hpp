@@ -1,9 +1,9 @@
+#ifndef TRIE_HPP
+#define TRIE_HPP
+
 #include "Game.hpp"
 #include <string>
 #include <vector>
-
-#ifndef TRIE.HPP
-#define TRIE.HPP
 
 class TrieNode {
 
@@ -42,6 +42,7 @@ public:
 
     // Outros métodos auxiliares, se necessário
     int getCaracterIndex(char c);
+    void collectGames(TrieNode* node, std::vector<Game*>& results);
 };
 
 #endif

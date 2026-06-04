@@ -1,5 +1,6 @@
-#ifndef GAME.HPP
-#define GAME.HPP
+#ifndef GAME_HPP
+#define GAME_HPP
+#include <string>
 
 class Game {
 

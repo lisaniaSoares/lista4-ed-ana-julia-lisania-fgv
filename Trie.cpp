@@ -194,7 +194,7 @@ std::vector<Game*> Trie::autocomplete(std::string prefix, int k){
     // Converte o prefixo para chave de busca
     std::string search_key = toSearchKey(prefix);
 
-    // Para cada caractere do prefix
+    // Para cada caractere do prefixo
     for(int i = 0; i < search_key.size(); i++){
         char c = search_key[i];
         int id = getCaracterIndex(c); // Pegando o index da tabela ASCII
@@ -206,7 +206,7 @@ std::vector<Game*> Trie::autocomplete(std::string prefix, int k){
             current_node = current_node -> children[id];
     }
 
-    // Chegamos no último elemento do prefix na trie
+    // Chegamos no último elemento do prefixo na trie
     std::vector<Game*> results;
 
     // Coletamos todos os jogos que tem esse prefixo
